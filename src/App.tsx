@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { SyntheticEvent, useState } from "react";
 
-function App() {
+import DiceContainer from './components/Dice/DiceContainer';
+import { multiDieRoll, oneDieRoll } from './utils/diceRolling';
+
+
+interface Die {
+  dSix?: number
+  d10?: number
+}
+
+export default function App () {
+
+
+
+  console.log("1D10", oneDieRoll(10))
+
+  console.log("multi-roll", multiDieRoll(2, 10));
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div className="container">
+
+      <DiceContainer />
     </div>
   );
 }
-
-export default App;
