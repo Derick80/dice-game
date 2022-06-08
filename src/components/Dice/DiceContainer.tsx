@@ -1,15 +1,8 @@
 // @ts-nocheck
 
-import React, { useState } from 'react'
-import Button from '../common/Button'
+import { useState } from 'react'
 import DicePool from './DicePool'
-import { v4 as uuidv4 } from 'uuid'
-import d6_die from '../../assets/images/d6_die.jpeg'
-import Die from '../common/Die'
-import { useImmer } from "use-immer";
 import initialDiceTypes from '../../utils/dataSource'
-import { isFunction } from 'util'
-let nextId = 0
 
 export type InitialDiceInterface = Array<{
     id: string | null
@@ -48,10 +41,7 @@ export default function DiceContainer () {
 
 
 
-    function fixPool () {
 
-
-    }
     const groupedDice = () => {
         var filtered = diceTypes.filter((dice) => {
             return dice.times > 0;
@@ -111,11 +101,11 @@ export default function DiceContainer () {
 
     }
     return (
-        <div className="dice-menu">
+        <div className='h-full relative col-start-1 col-end-3 md:col-span-2'>
             { diceTypes.map((die => (
-                <div className="dice-box" key={ die.id }>
-                    <img className="dice-image" key={ die.id } src={ die.diceImage } alt={ die.name } />
-                    <h4> { die.times }{ die.name }{ '' }</h4>
+                <div key={ die.id }>
+                    <img className="object-fit h-50px w-50px" key={ die.id } src={ die.diceImage } alt={ die.type } />
+                    <h4> { die.times }{ die.type }{ '' }</h4>
                     <div className="dice-button-box">
 
                         <button className="button-dice-type-selection" onClick={ () => {

@@ -1,30 +1,13 @@
-import "./App.css";
-import React, { SyntheticEvent, useState } from "react";
+import './App.css'
 
-import DiceContainer from './components/Dice/DiceContainer';
-import { multiDieRoll, oneDieRoll } from './utils/diceRolling';
-
-
-interface Die {
-  dSix?: number
-  d10?: number
-}
+import DiceContainer from './components/Dice/DiceContainer'
+import Home from './pages/Home'
 
 export default function App () {
-
-
-
-  // console.log("1D10", oneDieRoll(10))
-
-  // console.log("multi-roll", multiDieRoll(2, 10));
-
-
-
   return (
-
-    <div className="container">
-
+    <div className='grid md:grid-cols-12 gap-5'>
       <DiceContainer />
+      <Home />
     </div>
-  );
+  )
 }

@@ -5,6 +5,7 @@ export type DieProps = {
     sided?: number;
     times?: number
     name?: string
+    type?: string
     value?: string
     onClick?: any
     children?: React.ReactNode

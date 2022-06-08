@@ -1,4 +1,4 @@
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -65,8 +65,8 @@ button {
   align-items: center;
 }
 .dice-image {
-  object-fit: cover;
-  width: 100px;
+  object-fit: fill;
+  width: 100%;
   height: 100%;
   padding: 0 0 0.5rem 0;
 }
@@ -93,4 +93,4 @@ button {
   grid-column: 2/4;
   background-color: azure;
   border: 1px solid red;
-}
+} */
