@@ -1,48 +1,96 @@
-.dice-container {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --ff-body: 'Poppins', sans-serif;
+  --fs-lrg-H1: 6rem;
+  --fs-lrg-H2: 3.75rem;
+  --fs-lrg-H3: 3rem;
+  --fs-lrg-H4: 2.125rem;
+  --fs-lrg-H5: 1.5rem;
+  --fs-lrg-H6: 1.25rem;
+  --fs-lrg-body-1: 1rem;
+  --fs-lrg-body-2: 0.875rem;
+  --fs-lrg-caption: 0.75rem;
+  --nav-background: rgba(134, 162, 194, 0.723);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h3 {
+  font-size: var(--fs-lrg-H3);
+}
+
+ul {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5 em 1.25em;
+  border-radius: 0.25rem;
+  align-items: center;
+}
+.button-dice-type-selection {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5 em 1.25em;
+  border-radius: 0.25rem;
+  align-items: center;
+}
+
+.button-dice-type-selection:hover,
+.button-dice-type-selection:focus {
+  text-decoration: underline;
+  color: rgb(74, 123, 195);
+}
+.dice-box {
+  display: flex;
+  flex-direction: column;
+  max-width: 25%;
+  align-items: center;
+}
+.dice-image {
+  object-fit: cover;
+  width: 100px;
+  height: 100%;
+  padding: 0 0 0.5rem 0;
+}
+.container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
   gap: 10px;
 }
 
-.die-selection {
+.dice-menu {
   grid-column: 1;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 6em;
   border: 1px solid black;
 }
 
-.roll-container {
+.pool-container {
+  grid-column: 2/4;
+  height: 200vh;
 }
 .dice-container {
   grid-column: 2/4;
   background-color: azure;
   border: 1px solid red;
-}
-.die {
-  padding: 0.4rem;
-  background-color: white;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 10%;
-}
-
-.dot {
-  display: block;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background-color: black;
-}
-.first-face {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.second-face {
-  display: flex;
-  justify-content: space-between;
 }

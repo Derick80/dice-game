@@ -14,9 +14,9 @@ export default function App () {
 
 
 
-  console.log("1D10", oneDieRoll(10))
+  // console.log("1D10", oneDieRoll(10))
 
-  console.log("multi-roll", multiDieRoll(2, 10));
+  // console.log("multi-roll", multiDieRoll(2, 10));
 
 
 

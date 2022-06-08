@@ -1,8 +1,20 @@
 import React from 'react'
 
-export default function DicePool () {
+type DicePoolProps = {
+    pool: [{
+        id: number,
+        type: string,
+        times: number
+        sides: number
+    }]
+}
+export default function DicePool ({ pool }: DicePoolProps) {
+
+
+
+
 
     return (
-        <div className="roll-container">DicePool</div>
+        <div className="pool-container">DicePool</div>
     )
 }
