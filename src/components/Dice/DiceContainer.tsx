@@ -8,6 +8,7 @@ import d6_die from '../../assets/images/d6_die.jpeg'
 import Die from '../common/Die'
 import { useImmer } from "use-immer";
 import initialDiceTypes from '../../utils/dataSource'
+import { isFunction } from 'util'
 let nextId = 0
 
 export type InitialDiceInterface = Array<{
@@ -44,38 +45,20 @@ export default function DiceContainer () {
             }
         })))
     }
-    function getFilteredArray () {
-        var result = Object.keys(diceTypes).map(function (key) {
-            return diceTypes[key];
-        });
-        var filtered = result.filter((dice) => {
-            return dice.times > 0;
-        });
-        console.log("filtered", JSON.stringify(filtered));
-        setIsReady(true);
-    }
-    function groupBy (objectArray, property) {
-        return objectArray.reduce(function (acc, obj) {
-            var key = obj[property];
-            if (!acc[key]) {
-                acc[key] = [];
-            }
-            acc[key].push(obj);
-            return acc;
-        }, {});
-    }
+
+
 
     function fixPool () {
 
 
     }
     const groupedDice = () => {
-
-        setPool(groupBy(diceTypes, 'sides'))
-        console.log("pool", pool);
+        var filtered = diceTypes.filter((dice) => {
+            return dice.times > 0;
+        });
         setIsReady(true)
         let diceBucket = []
-        Array.from(diceTypes).map((el) => {
+        Array.from(filtered).map((el) => {
             return diceBucket.push([el.times, el.sides])
 
 
@@ -86,40 +69,45 @@ export default function DiceContainer () {
 
     }
 
-    function d (y) {
-        return Math.floor(Math.random() * y) + 1
+    function d (x: number) {
+        console.log(x);
+
+        let roll = Math.floor(Math.random() * x) + 1
+        return roll
     }
-    function XdY (x, y) {
+    function YdX (y: number, x: number) {
         let results = []
         do {
-            results.push(d(y));
+            results.push(d(x));
 
-        } while (results.length < x)
+        } while (results.length < y)
         return results
     }
     function dicePools (obj) {
-        let results = {};
-        for (let [y, x] of Object.entries(obj)) {
-            results[y] = XdY(x, y)
+        let results = [];
+        for (let [y, x] of Object.values(obj)) {
+            console.log("x", x, "y", y);
+
+            results[x] = YdX(y, x)
+
         }
-        console.log("dicePool", results);
+
+        let firstRound = results.map((day, index) => {
+            return day.reduce(function (a, b) {
+                return a + b;
+            });
+        });
+
+        const sum = firstRound.reduce((accumulator, value) => {
+            return accumulator + value;
+        }, 0);
+        console.log(results);
+
+        console.log(firstRound);
+        console.log(sum);
 
         return results
 
-    }
-    const groupedDice2 = () => {
-        const allowedProps = ['times', 'sides']
-        const allKeys = Object.keys(diceTypes)
-        const result = allKeys.reduce((next, key) => {
-            if (allowedProps.includes(key)) {
-                return { ...next, [key]: diceTypes[key] };
-            } else {
-                return next
-            }
-        }, {})
-        setDPool(result)
-        setIsReady(true)
-        dicePools(dPool)
 
     }
     return (
@@ -142,7 +130,6 @@ export default function DiceContainer () {
             ))) }
 
             <button onClick={ groupedDice }>Generate pool</button>
-            <button onClick={ groupedDice2 }>Generate pool2</button>
             { isReady &&
                 <DicePool pool={ pool } />
             }
