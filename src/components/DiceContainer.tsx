@@ -86,12 +86,12 @@ const DiceContainer = () => {
         return results
     }
     return (<>
-        <div className='flex flex-row justify-center mt-4 mb-1'>
+        <div className='dice-container'>
             { diceTypes.map((die) => (
-                <div className='p-2' key={ die.id }>
-                    <div className=''>
+                <div className='dice-box' key={ die.id }>
+                    <div className='die-img-container'>
                         <img
-                            className='md:h-20 md:w-20'
+
                             key={ die.id }
                             src={ die.diceImage }
                             alt={ die.type }
@@ -101,17 +101,17 @@ const DiceContainer = () => {
                         { die.times }
                         { die.type }
                     </div>
-                    <div className='text-center'>
-                        <button
-                            className=''
+                    <div className='die-actions'>
+                        <button className='btn-icon'
+
                             onClick={ () => {
                                 updateDie(die.id, true)
                             } }
                         >
                             <span className='material-icons-outlined'>add</span>
                         </button>
-                        <button
-                            className=''
+                        <button className='btn-icon'
+
                             onClick={ () => {
                                 updateDie(die.id, false)
                             } }
@@ -125,25 +125,29 @@ const DiceContainer = () => {
 
 
         </div  >
-        <div className='self-center'>        <button onClick={ groupedDice }>Roll Your Dice</button>
+        <div className='dpool-container'>
+            <DicePool pool={ pool } groupedDice={ groupedDice } />
         </div>
-        { isReady && <DicePool pool={ pool } /> }
+
     </>
     )
 }
 
 
 type DicePoolProps = {
+    groupedDice: () => {}
     pool: number
 }
-const DicePool = ({ pool }: DicePoolProps) => {
+const DicePool = ({ pool, groupedDice }: DicePoolProps) => {
 
 
     return (
-        <div className='flex flex-col self-center text-center'>Total Roll
+        <div className='die-actions'>
+            <button className='btn-die-action' onClick={ groupedDice }>Roll Your Dice</button>
+
             { pool > 0 &&
-                <>  { pool }
-                    <button onClick={ resetAndSave }>Reset and Save</button></> }
+                <>       <h4>Total Roll: { '' }{ pool }</h4>
+                    <button className='btn-die-actions' onClick={ resetAndSave }>Reset and Save</button></> }
         </div>
     )
 }

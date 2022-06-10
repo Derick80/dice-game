@@ -1,13 +1,18 @@
-import './input.css'
+import './index.css'
 
 import DiceContainer from './components/DiceContainer'
-import Home from './pages/Home'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import SideBar from './components/SideBar'
 
 export default function App () {
   return (
-    <div className='flex flex-col justify-center content-center'>
+    <div className='container'>
+      <Header />
+
       <DiceContainer />
-      <Home />
+      <SideBar />
+      <Footer />
     </div>
   )
 }
