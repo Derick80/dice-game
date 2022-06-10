@@ -1,10 +1,10 @@
-import d4 from '../assets/images/d4.png'
-import d6 from '../assets/images/d6.png'
-import d8 from '../assets/images/d8.png'
-import d10 from '../assets/images/d10.png'
-import d12 from '../assets/images/d12.png'
-import d20 from '../assets/images/d20.png'
-import d100 from '../assets/images/d100.png'
+import d4 from '../assets/images/moreDice/d4.png'
+import d6 from '../assets/images/moreDice/d6.png'
+import d8 from '../assets/images/moreDice/d8.png'
+import d10 from '../assets/images/moreDice/d10.png'
+import d12 from '../assets/images/moreDice/d12.png'
+import d20 from '../assets/images/moreDice/d20.png'
+import d100 from '../assets/images/moreDice/d100.png'
 
 const initialDiceTypes = [
   { id: 0, sides: 4, diceImage: d4, times: 1, type: 'D4' },
