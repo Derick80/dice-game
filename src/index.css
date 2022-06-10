@@ -173,8 +173,11 @@ img[width][height] {
 }
 
 .dice-box {
+  display: flex;
+  flex-direction: column;
   max-width: 100px;
   margin: 0 0.5rem 0 0.5rem;
+  align-items: center;
 }
 
 .footer-section {
