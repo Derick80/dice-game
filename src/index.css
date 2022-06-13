@@ -115,19 +115,13 @@ img[width][height] {
 }
 
 .container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+
   height: 100vh;
-  grid-template-areas:
-    'header header header header'
-    'sidebar dice-container dice-container dice-container'
-    'sidebar dice-container dice-container dice-container'
-    'sidebar dpool-container dpool-container dpool-container'
-    'sidebar footer-section footer-section footer-section';
-  gap: 10px;
 }
 
 .header-section {
-  grid-area: header;
   margin: 0.5rem;
   border-width: 8px;
   border-color: black;
@@ -141,15 +135,23 @@ img[width][height] {
   border-style: solid;
 }
 .dice-container {
-  grid-area: dice-container;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: grid;
+  grid-template-areas:
+    'sidebar DiceSelection DiceSelection DiceSelection'
+    'sidebar DiceSelection DiceSelection DiceSelection'
+    'sidebar dpool-container dpool-container dpool-container';
+
+  gap: 10px;
   text-align: center;
   margin-bottom: 0.5rem;
   border-width: 8px;
   border-color: black;
   border-style: solid;
+}
+
+.dice-selection {
+  display: flex;
+  justify-content: center;
 }
 .dpool-container {
   grid-area: dpool-container;
@@ -244,24 +246,25 @@ button.btn-icon-filled {
 
 @media screen and (max-width: 480px) {
   .container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.4fr 2.2fr 1.2fr 0.4fr;
-    /* grid-template-rows: repeat(3, 1fr); */
-    grid-template-areas:
-      'header'
-      'dice-container'
-      'dpool-container'
-      'sidebar';
-
-    padding: 1rem;
   }
   .header-section {
     grid-area: header;
     visibility: hidden;
   }
-
   .dice-container {
-    grid-area: dice-container;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: repeat(3, 1fr); */
+    grid-template-areas:
+      'header'
+      'dice-selection'
+      'dpool-selection'
+      'sidebar'
+      'footer';
+
+    padding: 1rem;
+  }
+  .dice-selection {
+    grid-area: dice-selection;
     display: flex;
 
     flex-wrap: wrap;
@@ -269,7 +272,7 @@ button.btn-icon-filled {
     align-items: flex-start;
   }
   .dpool-container {
-    grid-area: dpool-container;
+    grid-area: dpool-selection;
     display: flex;
     flex-direction: column;
     max-height: min-content;

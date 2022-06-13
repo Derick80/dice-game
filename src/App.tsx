@@ -1,9 +1,8 @@
 import './index.css'
 
-import DiceContainer from './components/DiceContainer'
+import DiceContainer from './components/containers/DiceContainer'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import SideBar from './components/SideBar'
 
 export default function App () {
   return (
@@ -11,7 +10,7 @@ export default function App () {
       <Header />
 
       <DiceContainer />
-      <SideBar />
+
       <Footer />
     </div>
   )

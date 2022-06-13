@@ -8,7 +8,7 @@ export type InitialDiceInterface = Array<{
     numberSides: number | null
 }>
 
-const DiceContainer = () => {
+const DiceSelection = () => {
     const [isReady, setIsReady] = useState(false)
     const [diceTypes, setDiceTypes] = useState(initialDiceTypes)
     const [pool, setPool] = useState([])
@@ -86,7 +86,7 @@ const DiceContainer = () => {
         return results
     }
     return (<>
-        <div className='dice-container'>
+        <div className='dice-selection'>
             { diceTypes.map((die) => (
                 <div className='dice-box' key={ die.id }>
                     <div className='die-img-container'>
@@ -156,4 +156,4 @@ const resetAndSave = () => {
 
     return (<></>)
 }
-export default DiceContainer
+export default DiceSelection
