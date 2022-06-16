@@ -8,12 +8,21 @@ export type InitialDiceInterface = Array<{
     numberSides: number | null
 }>
 
+const initialScore = [{
+    player: 'player1',
+    total: 0
+}]
+
+const initialData = {
+    total: 0
+}
 const DiceSelection = () => {
     const [isReady, setIsReady] = useState(false)
     const [diceTypes, setDiceTypes] = useState(initialDiceTypes)
     const [pool, setPool] = useState([])
     const [dPool, setDPool] = useState([])
-
+    const [score, setScore] = useState(initialScore)
+    const [data, setData] = useState(initialData)
     function updateDie (dieId: number, modify: boolean) {
         setDiceTypes(
             diceTypes.map((dType) => {
@@ -85,6 +94,17 @@ const DiceSelection = () => {
         setPool(sum)
         return results
     }
+
+    const resetAndSave = () => {
+        setData({
+            total: data.total + pool
+        }
+
+        )
+        setDiceTypes(initialDiceTypes)
+        setPool([])
+
+    }
     return (<>
         <div className='dice-selection'>
             { diceTypes.map((die) => (
@@ -126,7 +146,7 @@ const DiceSelection = () => {
 
         </div  >
         <div className='dpool-container'>
-            <DicePool pool={ pool } groupedDice={ groupedDice } />
+            <DicePool pool={ pool } groupedDice={ groupedDice } resetAndSave={ resetAndSave } />
         </div>
 
     </>
@@ -137,8 +157,10 @@ const DiceSelection = () => {
 type DicePoolProps = {
     groupedDice: () => {}
     pool: number
+    resetAndSave: () => {}
+
 }
-const DicePool = ({ pool, groupedDice }: DicePoolProps) => {
+const DicePool = ({ pool, groupedDice, resetAndSave }: DicePoolProps) => {
 
 
     return (
@@ -147,13 +169,12 @@ const DicePool = ({ pool, groupedDice }: DicePoolProps) => {
 
             { pool > 0 &&
                 <>       <h4>Total Roll: { '' }{ pool }</h4>
-                    <button className='btn-die-actions' onClick={ resetAndSave }>Reset and Save</button></> }
+                </> }
+            <button className='btn-die-actions' onClick={ resetAndSave }>Reset and Save</button>
         </div>
+
     )
 }
 
-const resetAndSave = () => {
 
-    return (<></>)
-}
 export default DiceSelection
